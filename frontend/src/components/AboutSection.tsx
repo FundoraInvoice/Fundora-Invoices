@@ -14,7 +14,7 @@ const teamMembers: TeamMember[] = [
     name: "Atul",
     twitter: "@Atul_Waman_",
     twitterUrl: "https://twitter.com/Atul_Waman_",
-    avatar: "/lovable-uploads/9637db98-3314-44a8-bd3f-af9d026b672b.png",
+    avatar: "/lovable-uploads/atulPic.jpg",
   },
   {
     name: "Shubham",

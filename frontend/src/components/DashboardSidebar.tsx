@@ -42,15 +42,23 @@ const DashboardSidebar = ({ user, onToggleChat }: DashboardSidebarProps) => {
   };
 
   const getInitials = () => {
-    if (user.username) return user.username.charAt(0).toUpperCase();
-    if (user.name) return user.name.charAt(0).toUpperCase();
-    return user.email.charAt(0).toUpperCase();
+    if (user.username && typeof user.username === "string" && user.username.length > 0) {
+      return user.username.charAt(0).toUpperCase();
+    }
+    if (user.name && typeof user.name === "string" && user.name.length > 0) {
+      return user.name.charAt(0).toUpperCase();
+    }
+    if (user.email && typeof user.email === "string" && user.email.length > 0) {
+      return user.email.charAt(0).toUpperCase();
+    }
+    return "";
   };
 
   const getDisplayName = () => {
-    if (user.username) return user.username;
-    if (user.name) return user.name;
-    return user.email;
+    if (user.username && typeof user.username === "string" && user.username.length > 0) return user.username;
+    if (user.name && typeof user.name === "string" && user.name.length > 0) return user.name;
+    if (user.email && typeof user.email === "string" && user.email.length > 0) return user.email;
+    return "User";
   };
 
   const connectWallet = async () => {

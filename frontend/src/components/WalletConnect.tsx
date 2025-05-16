@@ -31,11 +31,8 @@ const formSchema = z.object({
   fullName: z.string().min(3, {
     message: "Full name must be at least 3 characters.",
   }),
-  email: z.string().email({
-    message: "Invalid email address.",
-  }),
-  imageUrl: z.string().url({
-    message: "Invalid image URL.",
+  Email: z.string().min(3, {
+    message: "Full name must be at least 3 characters.",
   }),
   password: z.string().min(8, {
     message: "Password must be at least 8 characters.",
@@ -43,9 +40,6 @@ const formSchema = z.object({
   Cpassword: z.string().min(8, {
     message: "Password must be at least 8 characters.",
   }),
-}).refine((data) => data.password === data.Cpassword, {
-  message: "Passwords do not match",
-  path: ["Cpassword"],
 });
 
 const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProps) => {
@@ -60,14 +54,13 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
     defaultValues: {
       username: "",
       fullName: "",
-      email: "",
-      imageUrl: "",
       password: "",
       Cpassword: "",
     },
   });
 
   const onSubmitCredentials = (data: z.infer<typeof formSchema>) => {
+    console.log("Submitted credentials:", data);
     setUsername(data.username);
     toast({
       title: "Account details saved",
@@ -122,7 +115,6 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
         setWalletAddress(address);
       }
 
-      // Save user data including new fields
       const userData = {
         username,
         isLoggedIn: true,
@@ -131,15 +123,13 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
         walletType,
         walletAddress: address,
         fullName: form.getValues("fullName"),
-        email: form.getValues("email"),
-        imageUrl: form.getValues("imageUrl"),
       };
 
       localStorage.setItem("user", JSON.stringify(userData));
 
       toast({
         title: "Account Connected",
-        description: `Connected to ${walletType}: ${address.slice(0, 6)}...${address.slice(-4)}`,
+        description: `Connected to MetaMask: ${address.slice(0, 6)}...${address.slice(-4)}`,
       });
 
       if (onAccountCreated && username) {
@@ -184,6 +174,7 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
       description: 'Connect using browser extension',
       disabled: !available.includes('metamask')
     }
+    // You can add other wallets here later
   ];
 
   return (
@@ -217,46 +208,20 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
-              name="email"
+              name="Email"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="email@example.com" {...field} />
+                    <Input placeholder="example@gmail.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="imageUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Upload Image</FormLabel>
-                  <FormControl>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          const reader = new FileReader();
-                          reader.onloadend = () => {
-                            field.onChange(reader.result as string);
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <FormField
               control={form.control}
               name="password"
@@ -270,6 +235,7 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
               name="Cpassword"
@@ -283,8 +249,6 @@ const WalletConnect = ({ onAccountCreated, userRole = "sme" }: WalletConnectProp
                 </FormItem>
               )}
             />
-            {/* <Button type="submit" className="w-full bg-gradient-to-r from-fundora-blue to-fundora-cyan */}
-
             <Button type="submit" className="w-full bg-gradient-to-r from-fundora-blue to-fundora-cyan text-white">
               Next: Connect Wallet
             </Button>

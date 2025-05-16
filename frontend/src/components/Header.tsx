@@ -1,23 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogDescription, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger
-} from "@/components/ui/dialog";
-import WalletConnect from '@/components/WalletConnect';
 import ProfileButton from '@/components/ProfileButton';
-import { useWallet } from "../hooks/useWallet"; // <-- new hook
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,16 +16,9 @@ const Header = () => {
     if (user) {
       const userData = JSON.parse(user);
       setIsLoggedIn(true);
-      setUsername(userData.email || "User");
+      setUsername(userData.email || userData.username || "User");
     }
   }, []);
-
-  // Handler for successful account creation
-  const handleAccountCreated = (newUsername: string) => {
-    setUsername(newUsername);
-    setIsLoggedIn(true);
-    setDialogOpen(false);
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -44,27 +26,6 @@ const Header = () => {
     setUsername("");
     navigate("/");
   };
-
-  const walletDialog = (
-    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-fundora-blue to-fundora-cyan text-white">
-          Create Account
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="glass-morphism border border-fundora-blue/30 max-w-md">
-        <DialogHeader>
-          <DialogTitle className="text-center text-2xl font-orbitron text-gradient">
-            Connect Your Wallet
-          </DialogTitle>
-          <DialogDescription className="text-center text-gray-300">
-            Select a wallet to create your account
-          </DialogDescription>
-        </DialogHeader>
-        <WalletConnect onAccountCreated={handleAccountCreated} />
-      </DialogContent>
-    </Dialog>
-  );
 
   return (
     <header className="w-full py-6 relative z-50">
@@ -80,26 +41,47 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-3">
-          <Button variant="outline" className="glass-morphism" onClick={() => navigate("/")}>
+          <Button 
+            variant="outline" 
+            className="glass-morphism"
+            onClick={() => navigate("/")}
+          >
             Home
           </Button>
           
           {isLoggedIn && (
-            <Button variant="outline" className="glass-morphism" onClick={() => navigate("/dashboard")}>
+            <Button 
+              variant="outline" 
+              className="glass-morphism"
+              onClick={() => navigate("/dashboard")}
+            >
               Dashboard
             </Button>
           )}
-
-          <Button variant="outline" className="glass-morphism" onClick={() => navigate("/about")}>
-            About Us
+          
+          <Button 
+            variant="outline" 
+            className="glass-morphism"
+            onClick={() => navigate("/documentation")}
+          >
+            Documentation
           </Button>
-
+          
           {!isLoggedIn ? (
             <>
-              <Button variant="outline" className="glass-morphism" onClick={() => navigate("/login")}>
+              <Button 
+                variant="outline" 
+                className="glass-morphism"
+                onClick={() => navigate("/login")}
+              >
                 Login
               </Button>
-              {walletDialog}
+              {/* <Button 
+                className="bg-gradient-to-r from-fundora-blue to-fundora-cyan text-white"
+                onClick={() => navigate("/register")}
+              >
+                Create Account
+              </Button> */}
             </>
           ) : (
             <ProfileButton username={username} onLogout={handleLogout} />
@@ -131,29 +113,72 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full glass-morphism py-4 animate-slide-in">
           <div className="flex flex-col space-y-3 px-4">
-            <Button variant="outline" className="glass-morphism" onClick={() => { navigate("/"); setIsMenuOpen(false); }}>
+            <Button 
+              variant="outline" 
+              className="glass-morphism"
+              onClick={() => {
+                navigate("/");
+                setIsMenuOpen(false);
+              }}
+            >
               Home
             </Button>
-
+            
             {isLoggedIn && (
-              <Button variant="outline" className="glass-morphism" onClick={() => { navigate("/dashboard"); setIsMenuOpen(false); }}>
+              <Button 
+                variant="outline" 
+                className="glass-morphism"
+                onClick={() => {
+                  navigate("/dashboard");
+                  setIsMenuOpen(false);
+                }}
+              >
                 Dashboard
               </Button>
             )}
-
-            <Button variant="outline" className="glass-morphism" onClick={() => { navigate("/about"); setIsMenuOpen(false); }}>
-              About Us
+            
+            <Button 
+              variant="outline" 
+              className="glass-morphism"
+              onClick={() => {
+                navigate("/documentation");
+                setIsMenuOpen(false);
+              }}
+            >
+              Documentation
             </Button>
-
+            
             {!isLoggedIn ? (
               <>
-                <Button variant="outline" className="glass-morphism" onClick={() => { navigate("/login"); setIsMenuOpen(false); }}>
+                <Button 
+                  variant="outline" 
+                  className="glass-morphism"
+                  onClick={() => {
+                    navigate("/login");
+                    setIsMenuOpen(false);
+                  }}
+                >
                   Login
                 </Button>
-                {walletDialog}
+                <Button 
+                  className="bg-gradient-to-r from-fundora-blue to-fundora-cyan text-white"
+                  onClick={() => {
+                    navigate("/register");
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  Create Account
+                </Button>
               </>
             ) : (
-              <Button variant="outline" className="glass-morphism" onClick={() => { handleLogout(); setIsMenuOpen(false); }}>
+              <Button 
+                variant="outline" 
+                className="glass-morphism"
+                onClick={() => {
+                  handleLogout();
+                  setIsMenuOpen(false);
+                }}
+              >
                 Logout
               </Button>
             )}
@@ -163,5 +188,6 @@ const Header = () => {
     </header>
   );
 };
+
 
 export default Header;
