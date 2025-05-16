@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-white/10 selection:text-white;
+  }
+  
+  body {
+    @apply bg-fundora-dark text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+  }
+  
+  .neo-blur {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-fundora-blue to-fundora-cyan bg-clip-text text-transparent;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+}
