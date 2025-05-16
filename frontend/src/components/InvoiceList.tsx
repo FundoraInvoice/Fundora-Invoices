@@ -40,7 +40,7 @@ const InvoiceList = ({ userRole, username, userId, portfolioOnly = false }: Invo
         // Fetch invoices based on user role and view
         if (userRole === "investor" && !portfolioOnly) {
           // Fetch all available invoices from MongoDB for investor view
-          const response = await fetch('http://localhost:5000/api/invoices/all');
+          const response = await fetch('https://fundora-invoices.onrender.com/api/invoices/all');
           if (!response.ok) throw new Error('Failed to fetch invoices');
           
           const data = await response.json();
@@ -52,7 +52,7 @@ const InvoiceList = ({ userRole, username, userId, portfolioOnly = false }: Invo
             .filter(inv => inv.investor_id === userId)
             .map(inv => inv.invoice_id);
 
-          const response = await fetch('http://localhost:5000/api/invoices/all');
+          const response = await fetch('https://fundora-invoices.onrender.com/api/invoices/all');
           if (!response.ok) throw new Error('Failed to fetch invoices');
           
           const data = await response.json();
@@ -64,7 +64,7 @@ const InvoiceList = ({ userRole, username, userId, portfolioOnly = false }: Invo
           setFilteredInvoices(portfolioInvoices);
         } else if (userRole === "sme" && userId) {
           // For SME, fetch their own invoices
-          const response = await fetch(`http://localhost:5000/api/invoices?smeId=${userId}`);
+          const response = await fetch(`https://fundora-invoices.onrender.com/api/invoices?smeId=${userId}`);
           if (!response.ok) throw new Error('Failed to fetch invoices');
           
           const data = await response.json();
@@ -185,7 +185,7 @@ const InvoiceList = ({ userRole, username, userId, portfolioOnly = false }: Invo
       localStorage.setItem(DB_KEYS.INVESTMENTS, JSON.stringify(existingInvestments));
       
       // Update the invoice's status in MongoDB
-      const response = await fetch(`http://localhost:5000/api/invoices/${invoice.id}`, {
+      const response = await fetch(`https://fundora-invoices.onrender.com/api/invoices/${invoice.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ const InvoiceList = ({ userRole, username, userId, portfolioOnly = false }: Invo
       if (!response.ok) throw new Error('Failed to update invoice status');
       
       // Refresh the list
-      const updatedResponse = await fetch('http://localhost:5000/api/invoices/all');
+      const updatedResponse = await fetch('https://fundora-invoices.onrender.com/api/invoices/all');
       const updatedData = await updatedResponse.json();
       setInvoices(updatedData.filter((inv: Invoice) => inv.status === "Available"));
       

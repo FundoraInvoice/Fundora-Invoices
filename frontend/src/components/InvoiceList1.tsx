@@ -90,7 +90,7 @@ const InvoiceList = () => {
       setError('');
       try {
         console.log("Fetching invoices for address:", userAddress);
-        const response = await fetch(`http://localhost:5000/api/invoice/invoices/${userAddress}`);
+        const response = await fetch(`https://fundora-invoices.onrender.com/api/invoice/invoices/${userAddress}`);
         
         if (!response.ok) {
           console.error("API response not OK:", response.status, response.statusText);

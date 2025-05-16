@@ -137,7 +137,7 @@ const SmallInvoiceForm = ({ user }: SmallInvoiceFormProps) => {
   //       form.append("file", formData.file);
   //     }
 
-  //     const res = await fetch("http://localhost:5000/api/pins/upload", {
+  //     const res = await fetch("https://fundora-invoices.onrender.com/api/pins/upload", {
   //       method: "POST",
   //       body: form,
   //     });
@@ -201,7 +201,7 @@ const SmallInvoiceForm = ({ user }: SmallInvoiceFormProps) => {
     
 
     // 🚀 Send to new backend endpoint (combined Pinata + Mongo + Minting)
-    const res = await fetch("http://localhost:5000/api/invoice/mint", {
+    const res = await fetch("https://fundora-invoices.onrender.com/api/invoice/mint", {
     
       method: "POST",
       body: form,
