@@ -71,14 +71,14 @@ Fundora is built natively on [Base](https://base.org) to provide secure, fast, a
 
 ## 📦 Getting Started
 
-### Prerequisites
+## Prerequisites
 
 - Node.js v18+
 - Hardhat / Foundry
 - Base Goerli or Base Mainnet RPC
 - Metamask wallet
 
-### Run Locally
+## Run Locally
 
 ```bash
 git clone https://github.com/yourusername/fundora.git
@@ -89,7 +89,7 @@ npm run dev
 
 ---
 
-###🧠 Future Enhancements
+## 🧠 Future Enhancements
 ✅ Credit Score Integration via Chainlink / KYC APIs
 
 ⏳ Secondary Invoice Market (Buy/Sell invoice NFTs)
@@ -100,12 +100,12 @@ npm run dev
 
 ---
 
-###🛡 License
+## 🛡 License
 MIT
 
 ----
 
-###📬 Contact
+## 📬 Contact
 Made with 💙 by the Fundora Team
 Email: fundora.invoice@gmail.com
 Twitter: @fundora_invoice
