@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+# Fundora 🧾💸
 
-## Project info
+*Tokenized Invoice Financing Platform on Base*
 
-**URL**: https://lovable.dev/projects/56db8fb4-f4c0-4629-9285-8bffdd8216a9
+Fundora empowers small and medium-sized enterprises (SMEs) to turn unpaid invoices into instant liquidity. By leveraging blockchain technology, we tokenize invoices as NFTs and connect them to DeFi liquidity pools, enabling fast, transparent, and cost-effective financing — all on the Base network.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚨 Problem
 
-**Use Lovable**
+- *Delayed Payments*: 60% of SMEs suffer from cash flow issues due to unpaid invoices.
+- *Traditional Financing Is Broken*: High fees (2–5%), slow manual approval processes, and limited access.
+- *DeFi Lacks Real-World Integration*: Stablecoins and DeFi yield are underutilized for solving tangible SME problems.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/56db8fb4-f4c0-4629-9285-8bffdd8216a9) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 💡 Solution
 
-**Use your preferred IDE**
+*Fundora bridges DeFi and real-world finance through invoice tokenization.*
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- *Invoice Tokenization*: Invoices are minted as NFTs with embedded metadata (amount, due date, credit rating).
+- *USDC Liquidity Pools*: DeFi investors deposit stablecoins into pools to fund SMEs and earn yield.
+- *Smart Contract Automation*: Handles funding, repayment, and yield distribution — all on-chain.
+- *User Dashboards*:
+  - *SMEs*: Upload and track invoices, view liquidity received, repay transparently.
+  - *Investors*: View invoice opportunities, invest with full risk data, monitor returns.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## ⚙ How It Works
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1. *SME Uploads Invoice* → NFT is minted with metadata.
+2. *Smart Contract Verifies Invoice* and lists it for funding.
+3. *DeFi Investor Provides USDC* → SME receives instant liquidity.
+4. *Invoice Matures* → SME repays with interest.
+5. *Investor Receives Yield* via automated smart contract logic.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🚀 Why Base?
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+- ⚡ *Low-Cost Transactions*
+- 🔗 *Ethereum Compatibility*
+- 💰 *Rich Stablecoin Ecosystem*
+- 👨‍💻 *Strong Developer Tools & Community*
+
+Fundora is built natively on [Base](https://base.org) to provide secure, fast, and affordable access to liquidity for SMEs around the globe.
+
+---
+
+## 🛠 Tech Stack
+
+- *Frontend*: Next.js + Tailwind CSS  
+- *Smart Contracts*: Solidity (ERC-721 for invoice NFTs, USDC-compatible pool contracts)  
+- *Backend*: Node.js + Express + Chainlink Oracles  
+- *Storage*: IPFS for invoice metadata  
+- *Network*: Base (L2 on Ethereum)
+
+---
+
+## 📊 Features
+
+- ✅ Invoice NFT Minting
+- ✅ Real-Time Credit Scoring (optional Chainlink oracle integration)
+- ✅ DeFi Liquidity Pools
+- ✅ SME & Lender Dashboards
+- ✅ Yield Distribution Automation
+- ✅ Audit Logs & Transparency
+
+---
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- Hardhat / Foundry
+- Base Goerli or Base Mainnet RPC
+- Metamask wallet
+
+### Run Locally
+
+```bash
+git clone https://github.com/yourusername/fundora.git
+cd fundora
+npm install
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/56db8fb4-f4c0-4629-9285-8bffdd8216a9) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
