@@ -85,3 +85,27 @@ git clone https://github.com/yourusername/fundora.git
 cd fundora
 npm install
 npm run dev
+
+
+---
+
+###🧠 Future Enhancements
+✅ Credit Score Integration via Chainlink / KYC APIs
+
+⏳ Secondary Invoice Market (Buy/Sell invoice NFTs)
+
+⏳ Cross-chain Deployment (Polygon, Arbitrum)
+
+⏳ Risk-adjusted Liquidity Tranches
+
+---
+
+###🛡 License
+MIT
+
+----
+
+###📬 Contact
+Made with 💙 by the Fundora Team
+Email: fundora.invoice@gmail.com
+Twitter: @fundora_invoice
