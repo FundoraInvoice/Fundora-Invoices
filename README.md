@@ -85,7 +85,7 @@ git clone https://github.com/yourusername/fundora.git
 cd fundora
 npm install
 npm run dev
-
+```
 
 ---
 
